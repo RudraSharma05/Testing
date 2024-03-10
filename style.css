@@ -1,0 +1,114 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.container{
+    max-width: 100vw;
+    height: 100vh;
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+
+.bars_container{
+    display: flex;
+    flex-direction: row;
+}
+
+.bar{
+    width: 15px;
+    background-color: rgb(21, 255, 0);
+    margin: 0 2px;
+    border-radius: 2px;
+}
+
+body{
+    background-color: #000000;
+}
+
+.buttons_container > button, select{
+    width: 100%; /* Make buttons and selects fill the container */
+   height: 25px;
+   margin: 4px;
+   background-color: #ffffff;
+   border: none;
+   border-radius: 5px;
+   color: rgb(0, 0, 0);
+   font-family: "Source Code Pro", monospace;
+    font-weight: 800px;
+    font-style: normal;
+   font-size: 15px;
+   cursor: pointer;
+   text-align: center;
+   transition: 0.2s ease-in-out;
+   }
+
+   label[for="slider"] {
+    color: rgb(21, 255, 0);
+    font-family: "Source Code Pro", monospace;
+   }
+
+   #slider-container {
+    margin-top: 50px;
+}
+
+
+   #slider {
+    width: 50%;
+    margin: 15px 0;
+    -webkit-appearance: none;
+    background: transparent;
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border: 2px solid rgb(1, 94, 15);
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -5px;
+}
+
+#slider::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: 1px solid rgb(216, 216, 216);
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #56697b;
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        display: none; /* Hide the container content on smaller screens */
+    }
+
+    .phone_view {
+        height: 80vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 30px;
+        font-family: "Source Code Pro", monospace;
+        font-weight: 400px;
+        font-style: normal;
+        color: rgb(21, 255, 0);
+    }
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Sorting Visualizer</title>
+</head>
+<body>
+
+<div class="main">
+  <div class="controls">
+    <label for="slider">Array Size:</label>
+    <input type="range" id="slider" min="20" max="80" step="5" value="40" />
+    <select id="speed">
+      <option value="15">Medium</option>
+      <option value="5">Fast</option>
+      <option value="50">Slow</option>
+    </select>
+    <select id="algo">
+      <option value="bubble">Bubble Sort</option>
+      <option value="insertion">Insertion Sort</option>
+      <option value="heap">Heap Sort</option>
+      <option value="quick">Quick Sort</option>
+    </select>
+    <button id="randomize_array_btn">Randomize Array</button>
+  </div>
+  <button id="sort_btn">Sort</button>
+  
+
+  <div class="container">
+    <div class="bars_container" id="bars_container"></div>
+  </div>
+
+  <p class="description"> Short descriptions of how the algorithm works:</p>
+
+  <div class="description_bubble">
+     <p class="txt"> Bubble sort:</p>
+     <p class="txt1">
+Bubble Sort is an iterative sorting algorithm that imitates the movement of bubbles in sparkling water. The bubbles represents the elements of the data structure.<br>
+
+<br>The bigger bubbles reach the top faster than smaller bubbles, and this algorithm works in the same way. It iterates through the data structure and for each cycle compares the current element with the next one, swapping them if they are in the wrong order.<br>
+
+<br>It's a simple algorithm to implement, but not much efficient: on average, quadratic sorting algorithms with the same time complexity such as Selection Sort or Insertion Sort perform better.</p>
+  </div>
+
+  <div class="description_insertion">
+    <p class="txt">  Insertion Sort:</p>
+    <p class="txt1">
+      Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. It's less performant than advanced sorting algorithms, but it can still have some advantages: it's really easy to implement and it's efficient on small data structures almost sorted.<br>
+
+      <br>The algorithm divides the data structure in two sublists: a sorted one, and one still to sort. Initially, the sorted sublist is made up of just one element and it gets progressively filled. For every iteration, the algorithm picks an element on the unsorted sublist and inserts it at the right place in the sorted sublist.
+    </p>
+ </div>
+
+ <div class="description_heap">
+  <p class="txt">  Heap Sort:</p>
+  <p class="txt1">
+    Heap Sort is an in-place iterative sorting algorithm based on auxiliary data structures called heap. It's less efficient than algorithm with the same time complexity and it's not suitable for data structures with few elements.<br>
+
+    <br>The heap is a data structure representable as a binary tree, where each node has a value bigger or equal to its children. Consequently, the root will hold the maximum value.<br>
+    
+    <br>The data structure gets ordered to form the heap initially, and then it gets progressively reordered starting from the bigger elements.</p>
+</div>
+
+<div class="description_quick">
+  <p class="txt"> Quick Sort:</p>
+  <p class="txt1">
+    Quick Sort is a sorting algorithm based on splitting the data structure in smaller partitions and sort them recursively until the data structure is sorted.<br>
+
+    <br> This division in partitions is done based on an element, called pivot: all the elements bigger than the pivot get placed on the right side of the structure, the smaller ones to the left, creating two partitions. Next, this procedure gets applied recursively to the two partitions and so on.</p>
+</div>
+
+<p class="description">C code for the algorithms:</p>
+
+<div class="code_cont_bub">
+  <p class="txt">Bubble sort:</p>
+  <p class="code">
+    <pre><code>
+  
+  int i, j;
+  {
+    for (i = 0; i < n-1; i++)
+    {
+      for (j = 0; j < n-i-1; j++) 
+      {
+        if (arr[j] > arr[j+1])
+          {
+            int temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp;
+           }
+        }
+      }
+    }
+    </code></pre>
+  </p>
+</div>
+
+<div class="code_cont_ins">
+  <p class="txt">Insertion Sort:</p>
+  <p class="code">
+    <pre><code>
+  
+  int i, j;
+  int i, key, j;
+  for (i = 1; i < n; i++)
+    {
+      key = arr[i];
+      j = i - 1;
+      while (j >= 0 && arr[j] > key)
+      {
+          arr[j + 1] = arr[j];
+          j = j - 1;
+      }
+      arr[j + 1] = key;
+    }
+    </code></pre>
+  </p>
+</div>
+
+<div class="code_cont_heap">
+  <p class="txt">Heap Sort:</p>
+  <p class="code">
+    <pre><code>
+
+  int largest = i;
+  int l = 2 * i + 1;
+  int r = 2 * i + 2;
+
+  if (l < n && arr[l] > arr[largest])
+    largest = l;
+
+  if (r < n && arr[r] > arr[largest])
+    largest = r;
+
+  if (largest != i)
+  {
+    swap(arr[i], arr[largest]);
+    heapify(arr, n, largest);
+  }
+    </code></pre>
+  </p>
+</div>
+
+<div class="code_cont_quk">
+  <p class="txt">Quick Sort:</p>
+  <p class="code">
+    <pre><code>
+
+  int partition(int arr[], int low, int high)
+  {
+    int pivot = arr[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++)
+    {
+      if (arr[j] < pivot)
+      {
+        i++;
+        swap(&arr[i], &arr[j]);
+      }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+  }
+
+  void quickSort(int arr[], int low, int high)
+  {
+    if (low < high)
+    {
+      int pi = partition(arr, low, high);
+      quickSort(arr, low, pi - 1);
+      quickSort(arr, pi + 1, high);
+    }
+  }
+
+    </code></pre>
+  </p>
+</div>
+
+
+<p class="complexity"> 
+  Time Complexity
+</p>
+
+<table class="complexity-table">
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Average Case</th>
+      <th>Best Case</th>
+      <th>Worst Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bubble Sort</td>
+      <td>O(n^2)</td>
+      <td>O(n)</td>
+      <td>O(n^2)</td>
+    </tr>
+    <tr>
+      <td>Insertion Sort</td>
+      <td>O(n^2)</td>
+      <td>O(n)</td>
+      <td>O(n^2)</td>
+    </tr>
+    <tr>
+      <td>Heap Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+    </tr>
+    <tr>
+      <td>Quick Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n^2)</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+  <div class="phone_view">
+    <p>
+      Please rotate the device<br>
+      <br>(Use Laptop/Desktop for best view)
+    </p>
+  </div>
+
+  <script src="index.js"></script>
+
+</body>
+</html>
